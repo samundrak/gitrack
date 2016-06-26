@@ -19,6 +19,7 @@ harvest.extend({
     },
     create: function (data, callback) {
 
+
         var cb = callback ? callback : (err, tasks) => {
             if (err) {
                 return this.notifier.notify({
@@ -28,17 +29,17 @@ harvest.extend({
             }
 
             console.log(tasks);
-            this.notifier.notify('Task has been created for branch ' + data.event.oldBranch);
+            this.notifier.notify({
+                title: 'Timer Created',
+                message: 'Timer has been created for branch ' + data.event.branch
+            });
         };
-
+        let date = new Date();
         let createDetails = {
             project_id: this.config.harvest.project_id,
             task_id: this.config.harvest.task_id,
-            'hours_without_timer': data.timer.lastTimeOnProject,
-            notes: data.event.oldBranch,
-            'spent_at': this.moment().format('Y-m-d'),
-            started_at: data.timer.updated,
-            ended_at: Date.now(),
+            notes: data.event.branch,
+            'spent_at': date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
         }
         this.tracker.create(createDetails, cb);
     }

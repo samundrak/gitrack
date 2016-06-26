@@ -9,9 +9,12 @@
   "author": "samundrak",
   "license": "MIT",
   "dependencies": {
+    "daemon": "^1.1.0",
     "harvest": "^0.1.5",
+    "inquirer": "^1.1.0",
     "moment": "^2.13.0",
     "node-notifier": "^4.6.0",
-    "request": "^2.72.0"
+    "request": "^2.72.0",
+    "underscore": "^1.8.3"
   }
 }

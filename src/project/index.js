@@ -1,5 +1,6 @@
 'use strict';
 const fs = require('fs');
+const path = require('path');
 
 class Project {
 
@@ -16,13 +17,13 @@ class Project {
      * @returns {boolean}
      */
     isGitProject() {
-        let gitPath = this.path + '/' + this.git;
+        let gitPath = path.join(this.path, this.git);
         try {
             fs.accessSync(gitPath, fs.F_OK);
         } catch (e) {
             return false;
         }
-        this.head = gitPath + '/HEAD';
+        this.head = path.join(gitPath, 'HEAD');
         return true;
     }
 
@@ -31,7 +32,7 @@ class Project {
      * @returns {*}
      */
     readHead() {
-        if (!this.isGitProject()) throw new Error("This is not  git project");
+        if (!this.isGitProject()) throw new Error('This is not  git project');
         try {
             fs.accessSync(this.head, fs.F_OK);
         }

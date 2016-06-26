@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Tracker works as proxy
+ * It handles the request sanitize and filter
+ * if needed and then pass it to appropriate handler
+ */
+const harvest = require('./provider/harvest');
 class Tracker {
 
     constructor(service) {
@@ -15,23 +21,14 @@ class Tracker {
         this.proxyPass('create', arguments);
     }
 
-    update() {
-        this.proxyPass('update', arguments);
-    }
-
-    delete() {
-        this.proxyPass('delete', arguments);
-    }
-
     proxyPass(method, params) {
         this.tracker[method].apply(this.tracker, params);
     }
 
 }
-
 module.exports = {
     interface: Tracker,
     service: {
-        'harvest': require('./provider/harvest')
+        harvest
     }
 }
