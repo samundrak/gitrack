@@ -1,0 +1,17 @@
+{
+  "name": "gitrack",
+  "version": "1.0.0",
+  "description": "Track your time on harvest as you switch over branches",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "samundrak",
+  "license": "MIT",
+  "dependencies": {
+    "harvest": "^0.1.5",
+    "moment": "^2.13.0",
+    "node-notifier": "^4.6.0",
+    "request": "^2.72.0"
+  }
+}
