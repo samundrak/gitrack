@@ -2,11 +2,9 @@
 
 const fs = require('fs');
 const Project = require('./src/project');
-const config = require('./config.json');
 const events = new require('events');
 const event = new events.EventEmitter();
-const Tracker = require('./src/tracker');
-const tracker = new Tracker.interface(Tracker.service.harvest);
+
 
 class Boot {
 
@@ -22,7 +20,9 @@ class Boot {
     }
 
     start() {
-
+        const config = require('./config.json');
+        const Tracker = require('./src/tracker');
+        const tracker = new Tracker.interface(Tracker.service.harvest);
         console.log('GitRack is Running');
         var timer = {
             started: Date.now(),

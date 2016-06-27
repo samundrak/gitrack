@@ -88,7 +88,10 @@ inquirer.prompt(questions).then(function (answers) {
         config.project.location = __dirname;
     }
     config = JSON.stringify(config);
-    event.emit('replFinished', config);
-    fs.writeFile('config.json', config);
+    fs.writeFile('config.json', config, function (e) {
+        if (e) throw new Error(e);
+
+        event.emit('replFinished', config);
+    });
 });
 module.exports = event;
