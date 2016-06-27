@@ -22,6 +22,7 @@ harvest.extend({
 
         var cb = callback ? callback : (err, tasks) => {
             if (err) {
+                console.log(err)
                 return this.notifier.notify({
                     title: 'Error',
                     message: err

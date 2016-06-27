@@ -63,8 +63,7 @@ class Project {
      * whenever its changed an event 'branchChanged' is triggered
      */
     watchProject() {
-        fs.watch(this.head, (eventType, filename) => {
-            if (eventType != 'change') return;
+        fs.watchFile(this.head, (eventType, filename) => {
             let oldBranch = this.getBranch();
             let newBranch = this.readHead().getBranch();
             if (oldBranch === newBranch) return;

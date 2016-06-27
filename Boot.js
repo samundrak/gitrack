@@ -48,6 +48,7 @@ class Boot {
                 timer.lastTimeOnProject = event.on - timer.updated;
                 timer.updated = event.on;
                 tracker.create({timer, event});
+                console.log(event)
             }
         )
 
