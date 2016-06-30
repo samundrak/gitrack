@@ -18,11 +18,15 @@ class Tracker {
     }
 
     create() {
-        this.proxyPass('create', arguments);
+        return this.proxyPass('create', arguments);
+    }
+
+    toggleTimer() {
+        return this.proxyPass('toggleTimer', arguments);
     }
 
     proxyPass(method, params) {
-        this.tracker[method].apply(this.tracker, params);
+        return this.tracker[method].apply(this.tracker, params);
     }
 
 }

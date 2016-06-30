@@ -33,15 +33,19 @@ class Project {
      */
     readHead() {
         if (!this.isGitProject()) throw new Error('This is not  git project');
+        this.fileExists();
+        this.headContent = fs.readFileSync(this.head, 'UTF-8');
+        return this;
+    }
+
+    fileExists() {
         try {
             fs.accessSync(this.head, fs.F_OK);
         }
         catch (e) {
             throw new Error('Head File is not available');
         }
-
-        this.headContent = fs.readFileSync(this.head, 'UTF-8');
-        return this;
+        return true;
     }
 
     /**
@@ -63,27 +67,36 @@ class Project {
      * whenever its changed an event 'branchChanged' is triggered
      */
     watchProject() {
-        fs.watchFile(this.head, (eventType, filename) => {
-            let oldBranch = this.getBranch();
-            let newBranch = this.readHead().getBranch();
-            if (oldBranch === newBranch) return;
-            this.event.emit('branchChanged', {
-                on: Date.now(),
-                branch: this.readHead().getBranch(),
-                oldBranch,
-                eventType,
-                filename
-            });
+        fs.watch(this.head, (eventType, filename) => {
+            if (eventType != 'change') return;
+            this.runProjectProcess(eventType, filename);
         });
+    }
+
+    runProjectProcess(eventType, filename) {
+        let oldBranch = this.getBranch();
+        let newBranch = this.readHead().getBranch();
+        this.event.emit('branchChanged', {
+            on: Date.now(),
+            branch: newBranch,
+            oldBranch,
+            eventType,
+            filename
+        });
+    }
+
+    pingFile() {
+        if (!this.isGitProject() && !this.fileExists()) {
+            return;
+        }
+
+        fs.utimes(this.head, new Date(), new Date());
     }
 
     setGlobalEvent(event) {
         this.event = event;
     }
 
-    getGlobalEvent() {
-        return this.event;
-    }
 }
 
 module.exports = Project;

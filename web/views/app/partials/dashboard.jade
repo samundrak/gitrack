@@ -1,0 +1,34 @@
+.row
+    .col-md-12
+        div.alert.alert-info
+            | Currently you are working on <b>GIT</b> Branch
+            div.btn.btn-default.pull-right
+                | {{ dashboard.git.current.branch }}
+.row
+    .col-md-6
+        table.table.table-hover.table-striped
+            caption.caption.alert-warning
+                div.col-md-offset-4
+                    strong Project Status
+            tr
+                td
+                    div Project started on
+                td
+                    div.label.label-default {{ dashboard.timer.started }}
+            tr
+                td
+                    div Project updated on
+                td
+                    div.label.label-default {{ dashboard.timer.started }}
+            tr
+                td
+                    div Last worked on project
+                td
+                    div.label.label-default {{ dashboard.timer.started }}
+.row
+    .col-md-12
+        div.alert.alert-info
+            div.col-md-offset-5
+                strong Live Logs
+        div(style="margin-top:-20px")
+            textarea.form-control(rows="15" contenteditable="false" ng-model="dashboard.logs.live")

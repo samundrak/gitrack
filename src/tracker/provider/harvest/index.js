@@ -1,7 +1,7 @@
 'use strict';
 
 const Tracker = require('../');
-
+const Promise = require('bluebird');
 
 const harvest = new Tracker();
 harvest.extend({
@@ -17,32 +17,59 @@ harvest.extend({
     get: function () {
         return this.tracker;
     },
-    create: function (data, callback) {
+    create: function (data) {
 
 
-        var cb = callback ? callback : (err, tasks) => {
-            if (err) {
-                console.log(err)
-                return this.notifier.notify({
-                    title: 'Error',
-                    message: err
-                });
-            }
-
-            console.log(tasks);
-            this.notifier.notify({
-                title: 'Timer Created',
-                message: 'Timer has been created for branch ' + data.event.branch
-            });
-        };
         let date = new Date();
         let createDetails = {
             project_id: this.config.harvest.project_id,
             task_id: this.config.harvest.task_id,
-            notes: data.event.branch,
+            notes: data.event.notes,
             'spent_at': date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
         }
-        this.tracker.create(createDetails, cb);
+        let self = this;
+        return new Promise((resolve, reject)=> {
+            self.tracker.create(createDetails, (err, tasks) => {
+                if (err) {
+                    self.notifier.notify({
+                        title: 'Error',
+                        message: err
+                    });
+                    return reject(err);
+                }
+
+                self.notifier.notify({
+                    title: 'Timer Created',
+                    message: 'Timer has been created for branch ' + data.event.branch
+                });
+                return resolve(tasks);
+            });
+        });
+    },
+    toggleTimer(data){
+        let self = this;
+        let updateDetails = {
+            project_id: this.config.harvest.project_id,
+            task_id: this.config.harvest.task_id,
+            id: data.id
+        };
+        return new Promise((resolve, reject)=> {
+            self.tracker.toggleTimer(updateDetails, (err, tasks) => {
+                if (err) {
+                    self.notifier.notify({
+                        title: 'Error',
+                        message: "Error while updating branch " + data.issue
+                    });
+                    return reject(err);
+                }
+
+                self.notifier.notify({
+                    title: 'Timer  Updated',
+                    message: 'Timer has been updated for branch ' + data.issue
+                });
+                return resolve(tasks);
+            });
+        });
     }
 });
 

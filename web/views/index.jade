@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div.content
+    .row
+    include header
+
+  div.content
+    .row
+      .col-md-2
+        include leftbar
+
+      .col-md-10
+        ui-view

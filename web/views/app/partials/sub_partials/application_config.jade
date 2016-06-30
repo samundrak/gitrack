@@ -1,0 +1,73 @@
+form(ng-submit="saveConfiguration()")
+    div
+        label.label.label-default
+            | Enter Application Name
+        input.form-control(name="port", ng-model="config.app.name" disabled)
+
+        label.label.label-default
+            | Enter Application web port
+        input.form-control(name="port", ng-model="config.app.web.port")
+    hr
+    div
+        label.label.label-default
+            | Your Break Time Starts on
+        div
+            .row
+                .col-md-6
+                    b Hour
+                    input.form-control(ng-model="config.break.start.hour" type="number" min="0" max="23")
+                .col-md-6
+                    b Minute
+                    input.form-control(ng-model="config.break.start.minute" type="number" min="0" max="23")
+    hr
+    div
+        label.label-default.label
+            | Enter Your Harvest Subdomain
+        input.form-control(ng-model="config.harvest.subdomain")
+        label.label-default.label
+            | Enter Your Harvest Email
+        input.form-control(ng-model="config.harvest.email")
+        label.label-default.label
+            | Enter Your Harvest Password
+        input.form-control(ng-model="config.harvest.password" type="password")
+        label.label-default.label
+            | Enter Your Harvest Project Id
+        input.form-control(ng-model="config.harvest.project_id")
+        label.label-default.label
+            | Enter Your Harvest Task Id
+        input.form-control(ng-model="config.harvest.task_id")
+
+    hr
+    div
+        label.label-default.label
+            |   Enter the location of project
+        input.form-control(ng-model="config.project.location")
+
+    hr
+    div
+        label.label-default.label
+            |   Enter the location of Storage for LowDB
+        input.form-control(ng-model="config.storage.database.lowdb" disabled)
+    hr
+    div
+        label.label-default.label
+            |  Enter Jira Host
+        input.form-control(ng-model="config.jira.host")
+        label.label-default.label
+            | Enter Jira Username
+        input.form-control(ng-model="config.jira.basic_auth.username" )
+        label.label-default.label
+            | Enter Jira Password
+        input.form-control(ng-model="config.jira.basic_auth.password" type="password")
+        label.label-default.label
+            | Enter Jira Progress status name
+        input.form-control(ng-model="config.jira.status.progress")
+        label.label-default.label
+            | Enter Jira To Do status name
+        input.form-control(ng-model="config.jira.status.todo")
+        label.label-default.label
+            | Enter Jira WorkLog minimum time
+        input.form-control(ng-model="config.jira.minWorkLogTime")
+    hr
+    div
+        input(type="submit" ).btn.btn-primary

@@ -1,7 +1,7 @@
 'use strict';
 
 const config = require('../../../config.json');
-const notifier = require('../../notify');;
+const notifier = require('../../notify');
 const moment = require('moment');
 
 class Tracker {
@@ -9,7 +9,7 @@ class Tracker {
     constructor() {
         this.config = config;
         this.notifier = notifier;
-        this.prepare = ['init', 'get', 'create'];
+        this.prepare = ['init', 'get', 'create', 'toggleTimer'];
         this.moment = moment;
     }
 

@@ -1,5 +1,4 @@
 'use strict';
-
 const Boot = require('./Boot');
 const boot = new Boot();
 
