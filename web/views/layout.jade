@@ -1,0 +1,21 @@
+doctype html
+head
+    title= title
+    link(href="bootstrap/dist/css/bootstrap.min.css" rel='stylesheet',)
+    link(href="toastr/toastr.min.css" rel='styleSheet')
+    link(href="PACE/themes/blue/pace-theme-loading-bar.css" rel='styleSheet')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+html
+    body(ng-app="gitrack")
+        block content
+    script(src="moment/moment.js" type="text/javascript")
+    script(src="jquery/dist/jquery.min.js" type="text/javascript")
+    script(src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript")
+    script(src="toastr/toastr.min.js" type="text/javascript")
+    script(src="angular/angular.min.js" type="text/javascript")
+    script(src="angular-ui-router/release/angular-ui-router.min.js" type="text/javascript")
+    script(src="underscore/underscore-min.js" type="text/javascript")
+    script(src="PACE/pace.min.js" type="text/javascript")
+    script(src="/socket.io/socket.io.js" type="text/javascript")
+    script(src="scripts/app/app.js"  type="text/javascript")

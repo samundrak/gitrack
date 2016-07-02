@@ -1,0 +1,17 @@
+version: v1.5.0
+ignore: {}
+patch:
+  'npm:marked:20150520':
+    - node-notifier > cli-usage > marked:
+        patched: '2016-07-02T18:18:47.775Z'
+  'npm:qs:20140806-1':
+    - harvest > restler > qs:
+        patched: '2016-07-02T18:18:47.775Z'
+  'npm:request:20160119':
+    - harvest > request:
+        patched: '2016-07-02T18:18:47.775Z'
+    - jira > request:
+        patched: '2016-07-02T18:18:47.775Z'
+  'npm:qs:20140806':
+    - harvest > restler > qs:
+        patched: '2016-07-02T18:21:05.773Z'

@@ -1,0 +1,13 @@
+.row
+    .col-md-12
+        div.alert.alert-info
+            strong Application Configuration
+        div
+            include sub_partials/application_config
+hr
+.row
+    .col-md-12
+        div.alert.alert-danger
+            strong Stop your app
+            div.btn.btn-danger.pull-right(ng-click="stopApp()")
+                | STOP
