@@ -5,12 +5,13 @@ const boot = new Boot();
 var args = process.argv.splice(2);
 
 if (!boot.isConfigExist()) {
-    let event = require('./repl');
-    event.on('replFinished', function () {
+    // let event = require('./repl');
+    // event.on('replFinished', function () {
+        console.log("Please Visit Web Interface for configuration, \n Default is http://localhost:9090");
         boot.start();
         boot.goForDaemon(args);
-    });
-    return;
+    // });
+    // return;
 }
 boot.start();
 boot.goForDaemon(args);
