@@ -1,5 +1,5 @@
 var io = io.connect(window.location.href);
-var app = angular.module('gitrack', ['ui.router']);
+var app = angular.module('gitrack', ['ui.router', 'angularMoment']);
 app.config(function ($stateProvider, $urlRouterProvider) {
     'use strict';
     $urlRouterProvider.otherwise('/');
@@ -19,6 +19,7 @@ app.controller('dashboardCtrl', ['$scope', '$http', function ($scope, $http) {
     'use strict';
     angular.extend($scope, {
         dashboard: {
+            startApp: false,
             git: {
                 current: {
                     branch: 'Not Available'
@@ -28,22 +29,38 @@ app.controller('dashboardCtrl', ['$scope', '$http', function ($scope, $http) {
     });
 
     angular.extend($scope, {
+        startTimer: function () {
+            io.emit('startTimer', {});
+            toastr.info('Timer has been started again');
+            $scope.dashboard.startApp = false;
+        },
         getDashboard: function () {
             $http.get('/api/dashboard', {})
                 .success(function (data) {
                     $scope.dashboard = data;
-                    $scope.dashboard.timer = {
-                        started: moment(data.timer.started).fromNow(),
-                        updated: moment(data.timer.updated).fromNow(),
-
-                    };
-                    console.log($scope.dashboard)
+                    if (data.hasOwnProperty('break')) {
+                        $scope.dashboard.startApp = true;
+                        $scope.dashboard.breakStartedOn = data.break.on;
+                    }
                 });
-        },
 
+            return this;
+        },
+        eventListener: function () {
+            io.on('notification', function (data) {
+                if (data.title === 'Break Time!') {
+                    $scope.dashboard.startApp = true;
+                    $scope.dashboard.breakStartedOn = data.on;
+                }
+                $scope.dashboard.logs.push(data);
+                toastr[data.type](data.message);
+                $scope.$apply();
+            });
+            return this;
+        }
     });
 
-    $scope.getDashboard();
+    $scope.getDashboard().eventListener();
 }]);
 
 app.controller('settingsCtrl', ['$scope', '$http', function ($scope, $http) {
@@ -53,6 +70,11 @@ app.controller('settingsCtrl', ['$scope', '$http', function ($scope, $http) {
     });
 
     angular.extend($scope, {
+        pingApp: function () {
+            'use strict';
+            io.emit('startTimer', {});
+            toastr.info('Timer has been Toggled');
+        },
         stopApp: function () {
             var exitConfirm = confirm('Are your sure?' +
                 '\nBy exiting app you can\'t browse this anymore');

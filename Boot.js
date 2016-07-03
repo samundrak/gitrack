@@ -11,6 +11,8 @@ const Tracker = require('./src/tracker');
 const tracker = new Tracker.interface(Tracker.service.harvest);
 const Entities = require('./src/database/entities');
 const issueModel = new Entities.interface(Entities.model.issueModel).model;
+const logsModel = new Entities.interface(Entities.model.logsModel).model;
+const breakTimerModel = new Entities.interface(Entities.model.breakTimer).model;
 const Issue = require('./src/issue');
 const issue = new Issue.interface(Issue.service.jira);
 const schedule = require('node-schedule');
@@ -30,15 +32,17 @@ class Boot {
     }
 
     start() {
-
         var timer = {
             started: Date.now(),
-            updated: Date.now()
+            updated: Date.now(),
+            lastTimeOnProject: ''
         };
         console.log('GitRack is Running');
+        console.log('Web interface is available on http://localhost:' + config.app.web.port);
+
 
         /**
-         * Initilization and setup of project
+         * Initialization and setup of project
          *
          * @type {Project}
          */
@@ -50,8 +54,7 @@ class Boot {
         rule.dayOfWeek = [0, new schedule.Range(1, 6)];
         rule.hour = config.break.start.hour;
         rule.minute = config.break.start.minute;
-        // project.pingFile();
-
+        project.pingFile();
         /**
          * Listen on the event whenever
          * current branch got changed
@@ -63,17 +66,23 @@ class Boot {
                     tracker,
                     event,
                     issue,
-                    config
+                    config,
+                    logsModel
                 );
             }
         );
         schedule.scheduleJob(rule, function () {
             event.emit('notification', {
-                type: 'ínfo',
+                type: 'info',
                 title: 'Break Time!',
                 message: 'Time for Break.. Have some meal!'
             });
             let branch = issueModel.find({issue: project.getBranch()});
+            breakTimerModel.create({
+                on: new Date(),
+                branch: project.getBranch(),
+                status : 0
+            });
             if (!branch) return;
             tracker.toggleTimer(branch);
             if (branch.issueId) {
@@ -91,7 +100,9 @@ class Boot {
             event,
             issue,
             config,
-            project
+            project,
+            logsModel,
+            breakTimerModel
         });
     }
 

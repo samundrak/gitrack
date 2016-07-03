@@ -7,6 +7,8 @@ lowDB.extend({
     init: function () {
         this.db = low(path.join(__dirname, '../../../../' + this.config.storage.database.lowdb))
         this.db.defaults({
+            logs: [],
+            break: [],
             date: {
                 current_date: new Date()
             },
@@ -23,6 +25,8 @@ lowDB.extend({
             this.db.set('date.current_date', new Date())
                 .value();
             this.db.set('issue.jira', []).value();
+            this.db.set('logs', []).value();
+            this.db.set('break', []).value();
         }
     },
 

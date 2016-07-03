@@ -1,8 +1,12 @@
 form(ng-submit="saveConfiguration()")
     div
         label.label.label-default
+            | Enter Your Name
+        input.form-control(ng-model="config.user.name" )
+
+        label.label.label-default
             | Enter Application Name
-        input.form-control(name="port", ng-model="config.app.name" disabled)
+        input.form-control(ng-model="config.app.name" disabled)
 
         label.label.label-default
             | Enter Application web port
@@ -18,7 +22,7 @@ form(ng-submit="saveConfiguration()")
                     input.form-control(ng-model="config.break.start.hour" type="number" min="0" max="23")
                 .col-md-6
                     b Minute
-                    input.form-control(ng-model="config.break.start.minute" type="number" min="0" max="23")
+                    input.form-control(ng-model="config.break.start.minute" type="number" min="0" max="59")
     hr
     div
         label.label-default.label

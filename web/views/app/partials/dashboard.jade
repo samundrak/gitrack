@@ -1,6 +1,18 @@
 .row
     .col-md-12
         div.alert.alert-info
+            | Hello
+            strong
+                |  {{ dashboard.config.user.name }}
+    .col-md-12(ng-if="dashboard.startApp")
+        div.alert.alert-warning
+            | Currently you are on break from
+            strong
+                span(style="padding-left:10px;" am-time-ago="dashboard.breakStartedOn")
+            div.btn-success.btn.pull-right(ng-click="startTimer()")
+                | Start Timer
+    .col-md-12
+        div.alert.alert-info
             | Currently you are working on <b>GIT</b> Branch
             div.btn.btn-default.pull-right
                 | {{ dashboard.git.current.branch }}
@@ -9,26 +21,98 @@
         table.table.table-hover.table-striped
             caption.caption.alert-warning
                 div.col-md-offset-4
-                    strong Project Status
+                    strong Project Details
             tr
                 td
                     div Project started on
                 td
-                    div.label.label-default {{ dashboard.timer.started }}
+                    div
+                        span.label.label-default(am-time-ago="dashboard.timer.started")
+                        span.label.label-warning {{ dashboard.timer.started | date:'y/M/d h:m:s a'}}
             tr
                 td
                     div Project updated on
                 td
-                    div.label.label-default {{ dashboard.timer.started }}
+                    div
+                        span.label.label-default(am-time-ago="dashboard.timer.updated")
+                        span.label.label-warning {{ dashboard.timer.updated | date:'y/M/d h:m:s a'}}
             tr
                 td
                     div Last worked on project
                 td
-                    div.label.label-default {{ dashboard.timer.started }}
+                    div
+                        span.label.label-default {{ dashboard.timer.lastTimeOnProject | amDurationFormat : 'milliseconds'}}
+            tr
+                td
+                    div Project location
+                td
+                    div {{ dashboard.config.project.location }}
+    .col-md-6
+        table.table.table-hover.table-striped
+            caption.caption.alert-warning
+                div.col-md-offset-4
+                    strong App Details
+            tr
+                td
+                    div Jira Account
+                td
+                    div.label.label-default {{ dashboard.config.jira.basic_auth.username }}
+            tr
+                td
+                    div Harvest Account
+                td
+                    div.label.label-default {{ dashboard.config.harvest.email }}
+            tr
+                td
+                    div Break Time on
+                td
+                    div.label.label-default {{ dashboard.config.break.start.hour }} Hour {{ dashboard.config.break.start.minute }} Minute
+            tr
+                td
+                    div Git Url
+                td
+                    div {{ dashboard.git.remote }}
+.row
+    .col-md-12
+        div.alert.alert-info
+            div.col-md-offset-5
+                strong Branch You worked today
+        div(style="margin-top:-20px")
+            table.table.table-hover.table-striped
+                tr
+                    th Branch
+                    th Summary
+                    th Worked
+                    //th Timer Updated
+                tr(ng-if="!dashboard.issues.length")
+                    td No Work Details found
+                tr(ng-repeat="issue in dashboard.issues")
+                    td   {{ issue.issue }}
+                    td   {{ issue.notes || 'Not Available' }}
+                    td
+                        span(am-time-ago="issue.timer_started_at")
+                        br
+                        span.label.label-default {{ issue.timer_started_at | date:'y/M/d h:m:s a' }}
+                    //td(am-time-ago="issue.updated_at")
 .row
     .col-md-12
         div.alert.alert-info
             div.col-md-offset-5
                 strong Live Logs
         div(style="margin-top:-20px")
-            textarea.form-control(rows="15" contenteditable="false" ng-model="dashboard.logs.live")
+            div(  contenteditable="false")
+                table.table-stripped.table
+                    tr
+                        th Type
+                        th Title
+                        th Message
+                        th Time
+
+                    tr(ng-repeat="log in dashboard.logs") {{ log.title }}
+                        td
+                            btn( class="btn btn-{{ log.type }}") {{ log.type }}
+                        td {{ log.title }}
+                        td {{ log.message}}
+                        td(am-time-ago="log.on")
+                    tr
+                        td(ng-if="!dashboard.logs.length") No Logs Available

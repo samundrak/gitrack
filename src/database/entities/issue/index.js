@@ -7,7 +7,7 @@ class Provider {
     constructor() {
         this.database = new Database.interface(Database.service.lowDB).database;
         this.database = this.database.get();
-        this.prepare = ['init', 'find', 'create'];
+        this.prepare = ['init'];
     }
 
     extend(options) {
@@ -15,6 +15,30 @@ class Provider {
             if (!options[item]) throw new Error(item + ' method is provided');
             this[item] = options[item];
         });
+    }
+
+    find(data) {
+        return this.database.get(this.model)
+            .find(data)
+            .value();
+    }
+
+    create(data) {
+        return this.database.get(this.model)
+            .push(data)
+            .value();
+    }
+
+    getAll() {
+        return this.database.get(this.model)
+            .value();
+    }
+
+    update(options) {
+        this.database.get(this.model)
+            .find(options.find)
+            .assign(options.update)
+            .value();
     }
 }
 

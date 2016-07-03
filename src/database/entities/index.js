@@ -1,6 +1,8 @@
 'use strict';
 
 const issueModel = require('./issue/jira/index');
+const logsModel = require('./issue/logs');
+const breakTimer = require('./issue/break');
 class Model {
 
     constructor(model) {
@@ -12,6 +14,8 @@ class Model {
 module.exports = {
     interface: Model,
     model: {
-        issueModel
+        issueModel,
+        logsModel,
+        breakTimer
     }
 };
