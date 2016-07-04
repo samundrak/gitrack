@@ -7,7 +7,28 @@
     ]
   },
   "issue": {
-    "jira": []
+    "jira": [
+      {
+        "id": 483339062,
+        "user_id": 1275771,
+        "spent_at": "2016-07-04",
+        "created_at": "2016-07-04T08:26:59Z",
+        "updated_at": "2016-07-04T08:26:59Z",
+        "project_id": "9727673",
+        "task_id": "5351780",
+        "project": "Agentcis Development",
+        "task": "Development Research",
+        "client": "Agentcis",
+        "notes": "AGDV-562 changes in tenant registration and login page",
+        "hours_without_timer": 0,
+        "hours": 0,
+        "timer_started_at": "2016-07-04T08:26:59Z",
+        "hours_for_previously_running_timer": 3.83,
+        "issue": "AGDV-562",
+        "issueId": "14710",
+        "issueKey": "AGDV-562"
+      }
+    ]
   },
   "date": {
     "current_date": "2016-07-03T18:16:08.916Z"
@@ -18,6 +39,97 @@
       "title": "Issue Transition done",
       "message": "Status has been Changed to In Progress of issue TEST-14",
       "on": "2016-07-03T18:30:22.406Z"
+    },
+    {
+      "type": "error",
+      "title": "Error fetching Issue",
+      "message": "master is not JIRA Issue"
+    },
+    {
+      "type": "error",
+      "title": "Error fetching Issue",
+      "message": "master is not JIRA Issue"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562",
+      "on": "2016-07-04T08:15:02.775Z"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562",
+      "on": "2016-07-04T08:15:47.917Z"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562",
+      "on": "2016-07-04T08:21:45.390Z"
+    },
+    {
+      "type": "success",
+      "title": "Worklog added",
+      "message": "1m 4s Worklog has been added for AGDV-562",
+      "on": "2016-07-04T08:22:44.345Z"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562",
+      "on": "2016-07-04T08:22:45.404Z"
+    },
+    {
+      "type": "success",
+      "title": "Worklog added",
+      "message": "3m 12s Worklog has been added for AGDV-562",
+      "on": "2016-07-04T08:25:57.051Z"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562",
+      "on": "2016-07-04T08:27:33.519Z"
+    },
+    {
+      "type": "success",
+      "title": "Worklog added",
+      "message": "1m 42s Worklog has been added for AGDV-562",
+      "on": "2016-07-04T08:29:15.180Z"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-562",
+      "on": "2016-07-04T08:29:16.191Z"
+    },
+    {
+      "type": "error",
+      "title": "Error fetching Issue",
+      "message": "master is not JIRA Issue",
+      "on": "2016-07-04T09:16:32.099Z"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error on transition of issue AGDV-578",
+      "on": "2016-07-04T09:23:33.885Z"
     }
   ],
   "break": []

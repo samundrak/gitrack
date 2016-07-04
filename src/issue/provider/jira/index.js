@@ -61,7 +61,7 @@ jira.extend({
                 let transitionDetails = {
                     issueKey: data.issueKey,
                     transition: {
-                        id: inProgressTransition.id
+                        id: inProgressTransition && inProgressTransition.id
                     }
                 }
                 self.issue.transitionIssue(transitionDetails, function (err, issue) {
