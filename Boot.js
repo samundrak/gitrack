@@ -1,23 +1,6 @@
 'use strict';
-
 const fs = require('fs');
-const Project = require('./src/project');
-const config = require('./config.json');
-const events = new require('events');
-const event = new events.EventEmitter();
-global.app = {event};
-require('./Events')(event);
-const Tracker = require('./src/tracker');
-const tracker = new Tracker.interface(Tracker.service.harvest);
-const Entities = require('./src/database/entities');
-const issueModel = new Entities.interface(Entities.model.issueModel).model;
-const logsModel = new Entities.interface(Entities.model.logsModel).model;
-const breakTimerModel = new Entities.interface(Entities.model.breakTimer).model;
-const Issue = require('./src/issue');
-const issue = new Issue.interface(Issue.service.jira);
-const schedule = require('node-schedule');
-const rule = new schedule.RecurrenceRule();
-const _ = require('underscore');
+
 
 class Boot {
 
@@ -32,6 +15,24 @@ class Boot {
     }
 
     start() {
+        const config = global.config = require('./config.json');
+        const Project = require('./src/project');
+        const events = new require('events');
+        const event = new events.EventEmitter();
+        global.app = {event};
+        require('./Events')(event);
+        const Tracker = require('./src/tracker');
+        const tracker = new Tracker.interface(Tracker.service.harvest);
+        const Entities = require('./src/database/entities');
+        const issueModel = new Entities.interface(Entities.model.issueModel).model;
+        const logsModel = new Entities.interface(Entities.model.logsModel).model;
+        const breakTimerModel = new Entities.interface(Entities.model.breakTimer).model;
+        const Issue = require('./src/issue');
+        const issue = new Issue.interface(Issue.service.jira);
+        const schedule = require('node-schedule');
+        const rule = new schedule.RecurrenceRule();
+        const _ = require('underscore');
+
         var timer = {
             started: Date.now(),
             updated: Date.now(),
@@ -47,7 +48,10 @@ class Boot {
          * @type {Project}
          */
         const project = new Project(config.project.location);
-        project.setGlobalEvent(event)
+
+        project.setGlobalEvent(event);
+        if (!project.isGitProject()) return false;
+
         project.readHead();
         project.getBranch();
         project.watchProject()
@@ -81,7 +85,7 @@ class Boot {
             breakTimerModel.create({
                 on: new Date(),
                 branch: project.getBranch(),
-                status : 0
+                status: 0
             });
             if (!branch) return;
             tracker.toggleTimer(branch);

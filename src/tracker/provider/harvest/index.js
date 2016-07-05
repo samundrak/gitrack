@@ -6,6 +6,7 @@ const Promise = require('bluebird');
 const harvest = new Tracker();
 harvest.extend({
     init: function () {
+        if (!global.config.harvest) return;
         let Harvest = require('harvest');
         let harvest = new Harvest({
             subdomain: this.config.harvest.subdomain,
@@ -21,6 +22,7 @@ harvest.extend({
 
 
         let date = new Date();
+        if (!global.config.harvest) return;
         let createDetails = {
             project_id: this.config.harvest.project_id,
             task_id: this.config.harvest.task_id,

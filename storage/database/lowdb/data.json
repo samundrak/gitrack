@@ -10,15 +10,8 @@
     "jira": []
   },
   "date": {
-    "current_date": "2016-07-03T18:16:08.916Z"
+    "current_date": "2016-07-05T15:06:56.603Z"
   },
-  "logs": [
-    {
-      "type": "success",
-      "title": "Issue Transition done",
-      "message": "Status has been Changed to In Progress of issue TEST-14",
-      "on": "2016-07-03T18:30:22.406Z"
-    }
-  ],
+  "logs": [],
   "break": []
 }

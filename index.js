@@ -1,13 +1,17 @@
+#! /usr/bin/env node
+
 'use strict';
 const Boot = require('./Boot');
 const boot = new Boot();
 
 var args = process.argv.splice(2);
-
 if (!boot.isConfigExist()) {
-    console.log('Please Visit Web Interface for configuration');
-    boot.start();
-    boot.goForDaemon(args);
+    let event = require('./repl');
+    event.on('replFinished', function () {
+        boot.start();
+        boot.goForDaemon(args);
+    });
+    return;
 }
 boot.start();
 boot.goForDaemon(args);

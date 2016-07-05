@@ -1,12 +1,44 @@
-{
-  "harvest": {
-    "subdomain": "samundra",
-    "email": "samundrak@yahoo.com",
-    "password": "br0adlink",
-    "project_id": "11113607",
-    "task_id": "6176676"
-  },
-  "project": {
-    "location": "C:\\Users\\samundra\\nomail"
-  }
-}
+ {
+   "app": {
+     "name": "GitRack",
+     "web": {
+       "port": 9090
+     }
+   },
+   "break": {
+     "start": {
+       "hour": 0,
+       "minute": 2
+     }
+   },
+   "harvest": {
+     "subdomain": "samundra",
+     "email": "samundrak@yahoo.com",
+     "password": "br0adlink",
+     "project_id": "11113607",
+     "task_id": "6176676"
+   },
+   "project": {
+     "location": "C:\\Users\\samundra\\nomails"
+   },
+   "storage": {
+     "database": {
+       "lowdb": "storage/database/lowdb/data.json"
+     }
+   },
+   "jira": {
+     "host": "samundrak.atlassian.net",
+     "basic_auth": {
+       "username": "samundrak@yahoo.com",
+       "password": "br0adlink"
+     },
+     "status": {
+       "progress": "In Progress",
+       "todo": "To Do"
+     },
+     "minWorkLogTime": 60
+   },
+   "user": {
+     "name": "Samundra kc"
+   }
+ }

@@ -31,5 +31,8 @@
   "devDependencies": {
     "eslint-plugin-you-dont-need-lodash-underscore": "^4.0.1"
   },
+  "bin": {
+    "gitrack": "./index.js"
+  },
   "snyk": true
 }

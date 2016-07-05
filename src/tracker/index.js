@@ -9,10 +9,11 @@ const harvest = require('./provider/harvest');
 class Tracker {
 
     constructor(service) {
+
         this.tracker = service;
         this.tracker.init();
     }
-
+    
     get() {
         this.tracker.get();
     }

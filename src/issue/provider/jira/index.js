@@ -9,6 +9,7 @@ require('moment-duration-format');
 const jira = new Issue();
 jira.extend({
     init: function () {
+        if (!global.config.jira) return;
         this.issue = new JiraClient({
             host: this.config.jira.host,
             basic_auth: this.config.jira.basic_auth
@@ -18,6 +19,7 @@ jira.extend({
         return this.issue;
     },
     fetch(data){
+        if (!global.config.jira) return;
         var self = this;
         return new Promise(function (resolve, reject) {
             self.issue.getIssue({

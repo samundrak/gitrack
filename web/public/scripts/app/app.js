@@ -101,7 +101,7 @@ app.controller('settingsCtrl', ['$scope', '$http', function ($scope, $http) {
                     if (!data.success) {
                         return toastr.error(data.message);
                     }
-
+                    toastr.warning('Restart app to see changes');
                     return toastr.info(data.message);
                 });
         }
