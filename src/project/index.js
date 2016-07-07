@@ -1,7 +1,7 @@
 'use strict';
-const fs = require('fs');
+const chokidar = require('chokidar');
 const path = require('path');
-
+const fs = require('fs');
 class Project {
 
     constructor(path) {
@@ -67,9 +67,9 @@ class Project {
      * whenever its changed an event 'branchChanged' is triggered
      */
     watchProject() {
-        fs.watch(this.head, (eventType, filename) => {
-            if (eventType != 'change') return;
-            this.runProjectProcess(eventType, filename);
+        let watcher = chokidar.watch(this.head);
+        watcher.on('change', (eventType, filename) => {
+            this.runProjectProcess('change', filename);
         });
     }
 
@@ -85,6 +85,11 @@ class Project {
         });
     }
 
+    /**
+     * Ping the file so it starts tracking
+     * current branch
+     * 
+     */
     pingFile() {
         if (!this.isGitProject() && !this.fileExists()) {
             return;

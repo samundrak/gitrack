@@ -10,8 +10,14 @@
     "jira": []
   },
   "date": {
-    "current_date": "2016-07-05T15:06:56.603Z"
+    "current_date": "2016-07-07T16:12:49.041Z"
   },
   "logs": [],
-  "break": []
+  "break": [
+    {
+      "on": "2016-07-07T18:15:00.741Z",
+      "branch": "dev",
+      "status": 0
+    }
+  ]
 }

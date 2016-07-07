@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.1",
+    "chokidar": "^1.6.0",
     "daemon": "^1.1.0",
     "harvest": "^0.1.5",
     "inquirer": "^1.1.0",
@@ -24,9 +25,9 @@
     "node-notifier": "^4.6.0",
     "node-schedule": "^1.1.1",
     "request": "^2.72.0",
+    "snyk": "1.16.0",
     "tough-cookie-filestore": "0.0.1",
-    "underscore": "^1.8.3",
-    "snyk": "1.16.0"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "eslint-plugin-you-dont-need-lodash-underscore": "^4.0.1"

@@ -51,7 +51,6 @@ class Boot {
 
         project.setGlobalEvent(event);
         if (!project.isGitProject()) return false;
-
         project.readHead();
         project.getBranch();
         project.watchProject()
