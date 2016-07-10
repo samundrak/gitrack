@@ -4,11 +4,10 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+const killable = require('killable');
 const routes = require('./routes/index');
 const config = require('../config.json');
 const app = express();
-
 module.exports = function (gitRack) {
     'use strict';
 
@@ -18,7 +17,7 @@ module.exports = function (gitRack) {
     app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+    app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
@@ -66,6 +65,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
     let server = app.listen(config.app.web.port);
     let io = require('socket.io')(server);
-    require('./handlers/socket')(app, gitRack, io);
+    killable(server);
+    require('./handlers/socket')(app, gitRack, io, server);
     return app;
 }

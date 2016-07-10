@@ -29,7 +29,7 @@ module.exports = function (timer, issueModel, tracker, event, issue) {
                     issueId: parseInt(data.id)
                 });
                 issue.addWorkLog({timer, event});
-            })
+            }, null)
             .finally(function () {
                 let trackerPr = tracker.create({timer, event});
                 if (!trackerPr) return;

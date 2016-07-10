@@ -18,6 +18,7 @@
     "inquirer": "^1.1.0",
     "jira": "^0.9.2",
     "jira-connector": "^2.3.0",
+    "killable": "^1.0.0",
     "lodash": "^4.13.1",
     "lowdb": "^0.13.1",
     "moment": "^2.13.0",

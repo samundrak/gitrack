@@ -75,6 +75,12 @@ app.controller('settingsCtrl', ['$scope', '$http', function ($scope, $http) {
             io.emit('startTimer', {});
             toastr.info('Timer has been Toggled');
         },
+        restartApp: function () {
+            'use strict';
+            io.emit('restartApp', {});
+            toastr.info('Please wait..');
+
+        },
         stopApp: function () {
             var exitConfirm = confirm('Are your sure?' +
                 '\nBy exiting app you can\'t browse this anymore');

@@ -19,9 +19,9 @@ jira.extend({
         return this.issue;
     },
     fetch(data){
-        if (!global.config.jira) return;
         var self = this;
         return new Promise(function (resolve, reject) {
+            if (!global.config.jira) return reject(new Error('JIRA instance is not available'));
             self.issue.getIssue({
                 issueKey: data.issueKey
             }, function (error, issue) {
