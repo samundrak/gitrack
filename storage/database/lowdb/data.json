@@ -7,53 +7,49 @@
     ]
   },
   "issue": {
-    "jira": [
-      {
-        "id": 485782760,
-        "user_id": 1320718,
-        "spent_at": "2016-07-10",
-        "created_at": "2016-07-10T18:09:27Z",
-        "updated_at": "2016-07-10T18:09:27Z",
-        "project_id": "11113607",
-        "task_id": "6176676",
-        "project": "test",
-        "task": "Graphic Design",
-        "client": "test",
-        "notes": null,
-        "hours_without_timer": 0,
-        "hours": 0,
-        "timer_started_at": "2016-07-10T18:09:27Z",
-        "issue": "TEST-12"
-      },
-      {
-        "id": 485782772,
-        "user_id": 1320718,
-        "spent_at": "2016-07-10",
-        "created_at": "2016-07-10T18:09:40Z",
-        "updated_at": "2016-07-10T18:09:40Z",
-        "project_id": "11113607",
-        "task_id": "6176676",
-        "project": "test",
-        "task": "Graphic Design",
-        "client": "test",
-        "notes": null,
-        "hours_without_timer": 0,
-        "hours": 0,
-        "timer_started_at": "2016-07-10T18:09:40Z",
-        "hours_for_previously_running_timer": 0,
-        "issue": "TEST-14"
-      }
-    ]
+    "jira": []
   },
   "date": {
-    "current_date": "2016-07-10T14:46:01.338Z"
+    "current_date": "2016-07-10T18:30:01.269Z"
   },
-  "logs": [],
-  "break": [
+  "logs": [
     {
-      "on": "2016-07-10T18:15:00.321Z",
-      "branch": "TEST-12",
-      "status": 1
+      "type": "success",
+      "title": "Issue Transition done",
+      "message": "Status has been Changed to In Progress of issue TEST-14"
+    },
+    {
+      "type": "error",
+      "title": "Error",
+      "message": "Error adding worklog of issue TEST-14"
+    },
+    {
+      "type": "success",
+      "title": "Issue Transition done",
+      "message": "Status has been Changed to In Progress of issue TEST-12"
+    },
+    {
+      "type": "success",
+      "title": "Issue Transition done",
+      "message": "Status has been Changed to In Progress of issue TEST-14"
+    },
+    {
+      "type": "success",
+      "title": "Issue Transition done",
+      "message": "Status has been Changed to In Progress of issue TEST-12"
+    },
+    {
+      "type": "success",
+      "title": "Worklog added",
+      "message": "1m 30s Worklog has been added for TEST-12",
+      "on": "2016-07-10T18:35:46.823Z"
+    },
+    {
+      "type": "success",
+      "title": "Issue Transition done",
+      "message": "Status has been Changed to In Progress of issue TEST-14",
+      "on": "2016-07-10T18:35:47.849Z"
     }
-  ]
+  ],
+  "break": []
 }

@@ -27,7 +27,7 @@ jira.extend({
             }, function (error, issue) {
                 if (error) {
                     self.event.emit('notification', {
-                        type: 'error',
+                        type: 'danger',
                         title: 'Error fetching Issue',
                         message: data.issueKey + ' is not JIRA Issue'
                     });
@@ -47,7 +47,7 @@ jira.extend({
             }, function (error, transition) {
                 if (error) {
                     self.event.emit('notification', {
-                        type: 'error',
+                        type: 'danger',
                         title: 'Error',
                         message: 'Error on transition of issue ' + data.issueKey
                     });
@@ -69,7 +69,7 @@ jira.extend({
                 self.issue.transitionIssue(transitionDetails, function (err, issue) {
                     if (err) {
                         self.event.emit('notification', {
-                            type: 'error',
+                            type: 'danger',
                             title: 'Error',
                             message: 'Error on transition of issue ' + data.issueKey
                         });
@@ -109,7 +109,7 @@ jira.extend({
                     console.log(err);
 
                     self.event.emit('notification', {
-                        type: 'error',
+                        type: 'danger',
                         title: 'Error',
                         message: 'Error adding worklog of issue ' + data.event.oldBranch
                     });

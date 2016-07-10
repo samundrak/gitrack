@@ -7,7 +7,7 @@ module.exports = function (app, gitRack, io, server) {
     'use strict';
 
     io.on('connection', function (client) {
-        gitRack.event.on('notification', onNotification(app, gitRack));
+        gitRack.event.on('notification', onNotification(app, gitRack, client));
         client.on('startTimer', onStartTimer(app, gitRack));
         client.on('stopApp',onStopApp);
         client.on('restartApp',onRestartApp(app, server));

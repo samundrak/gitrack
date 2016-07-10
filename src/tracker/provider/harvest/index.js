@@ -35,6 +35,7 @@ harvest.extend({
                 if (err) {
                     self.notifier.notify({
                         title: 'Error',
+                        type: 'danger',
                         message: err
                     });
                     return reject(err);
@@ -42,6 +43,7 @@ harvest.extend({
 
                 self.notifier.notify({
                     title: 'Timer Created',
+                    type: 'success',
                     message: 'Timer has been created for branch ' + data.event.branch
                 });
                 return resolve(tasks);
@@ -60,6 +62,7 @@ harvest.extend({
                 if (err) {
                     self.notifier.notify({
                         title: 'Error',
+                        type: 'danger',
                         message: "Error while updating branch " + data.issue
                     });
                     return reject(err);
