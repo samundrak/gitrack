@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.0
+version: v1.12.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -20,3 +20,8 @@ patch:
   'npm:marked:20170112':
     - node-notifier > cli-usage > marked:
         patched: '2017-02-10T14:18:40.393Z'
+  'npm:mime:20170907':
+    - jira > request > mime:
+        patched: '2018-06-30T00:12:01.676Z'
+    - jira > request > form-data > mime:
+        patched: '2018-06-30T00:12:01.676Z'
