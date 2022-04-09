@@ -14,7 +14,7 @@
     "bluebird": "^3.4.1",
     "chokidar": "^1.6.0",
     "daemon": "^1.1.0",
-    "harvest": "^1.0.0",
+    "harvest": "^2.2.6",
     "inquirer": "^1.1.0",
     "jira": "^0.9.2",
     "jira-connector": "^2.3.0",
